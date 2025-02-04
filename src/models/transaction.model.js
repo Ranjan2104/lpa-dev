@@ -63,29 +63,29 @@ transactionSchema.pre("save", async function (next) {
   }
 });
 
-transactionSchema.pre(
-  "deleteOne",
-  { document: false, query: true },
-  async function (next) {
-    try {
-      const transaction = await this.model.findOne(this.getQuery()); 
-      if (!transaction) return next();
+// transactionSchema.pre(
+//   "deleteOne",
+//   { document: false, query: true },
+//   async function (next) {
+//     try {
+//       const transaction = await this.model.findOne(this.getQuery()); 
+//       if (!transaction) return next();
 
-      await User.findByIdAndUpdate(transaction.userId, {
-        $inc: {
-          "balance.totalBalance": transaction.depositWalletBalance,
-          "balance.cashWon": transaction.cashWonWalletBalance,
-          "balance.totalWalletBalance":
-            transaction.depositWalletBalance + transaction.cashWonWalletBalance,
-        },
-      });
+//       await User.findByIdAndUpdate(transaction.userId, {
+//         $inc: {
+//           "balance.totalBalance": transaction.depositWalletBalance,
+//           "balance.cashWon": transaction.cashWonWalletBalance,
+//           "balance.totalWalletBalance":
+//             transaction.depositWalletBalance + transaction.cashWonWalletBalance,
+//         },
+//       });
 
-      next();
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+//       next();
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
 const Transaction = model("Transaction", transactionSchema);
 

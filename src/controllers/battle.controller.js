@@ -1077,8 +1077,8 @@ exports.updateBattleResultByAdmin = async (req, res) => {
         );
 
         Object.assign(createdByUser.balance, {
-          // totalBalance:
-          //   createdByUser.balance.totalBalance + battleDetails.entryFee,
+          totalBalance:
+            createdByUser.balance.totalBalance + battleDetails.entryFee,
           battlePlayed: createdByUser.balance.battlePlayed - 1,
         });
 
@@ -1098,8 +1098,8 @@ exports.updateBattleResultByAdmin = async (req, res) => {
           );
 
           Object.assign(acceptedByUser.balance, {
-            // totalBalance:
-            //   acceptedByUser.balance.totalBalance + battleDetails.entryFee,
+            totalBalance:
+              acceptedByUser.balance.totalBalance + battleDetails.entryFee,
             battlePlayed: acceptedByUser.balance.battlePlayed - 1,
           });
 

@@ -49,8 +49,8 @@ const updateWinningAmountForWinner = async (data) => {
       data.resultUpatedBy?.acceptedUser?.matchStatus === "CANCELLED" &&
       data.resultUpatedBy?.createdUser?.matchStatus === "CANCELLED"
     ) {
-      // const createdUser = await User.findOne({ _id: data?.createdBy });
-      // const acceptedUser = await User.findOne({ _id: data?.acceptedBy });
+      const createdUser = await User.findOne({ _id: data?.createdBy });
+      const acceptedUser = await User.findOne({ _id: data?.acceptedBy });
 
       const createdUserTransaction = await Transaction.deleteOne({
         battleId: data?._id,
@@ -58,8 +58,8 @@ const updateWinningAmountForWinner = async (data) => {
       });
 
       if (createdUserTransaction.deletedCount > 0) {
-        // createdUser.balance.totalBalance += data.entryFee;
-        // createdUser.balance.totalWalletBalance += data.entryFee;
+        createdUser.balance.totalBalance += data.entryFee;
+        createdUser.balance.totalWalletBalance += data.entryFee;
       }
 
       const acceptedUserTransaction = await Transaction.deleteOne({
@@ -68,12 +68,12 @@ const updateWinningAmountForWinner = async (data) => {
       });
 
       if (acceptedUserTransaction.deletedCount > 0) {
-        // acceptedUser.balance.totalBalance += data.entryFee;
-        // acceptedUser.balance.totalWalletBalance += data.entryFee;
+        acceptedUser.balance.totalBalance += data.entryFee;
+        acceptedUser.balance.totalWalletBalance += data.entryFee;
       }
 
-      // await createdUser?.save();
-      // await acceptedUser?.save();
+      await createdUser?.save();
+      await acceptedUser?.save();
     } else {
       if (!data.winner) return;
       const userDetails = await User.findOne({ _id: data.winner });
@@ -207,11 +207,11 @@ const updateWalletAndDeleteTransaction = async (userId, entryFee, battleId) => {
     userId: userId,
   });
 
-  // if (transaction.deletedCount > 0) {
-  //   user.balance.totalBalance += entryFee;
-  //   user.balance.totalWalletBalance += entryFee;
-  //   await user.save();
-  // }
+  if (transaction.deletedCount > 0) {
+    user.balance.totalBalance += entryFee;
+    user.balance.totalWalletBalance += entryFee;
+    await user.save();
+  }
 };
 
 module.exports = {
