@@ -9,12 +9,12 @@
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "/mainLogo.png"
+      "type": "/mainlogosff"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
-      "type": "/mainLogo.png"
+      "type": "/mainlogosff"
     }
   ]
 }
