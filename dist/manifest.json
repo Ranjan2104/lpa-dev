@@ -1,5 +1,5 @@
 {
-  "name": "R1 Battel",
+  "name": "Ludo Game",
   "short_name": "The Ultimate Ludo Battle Platform",
   "start_url": "https://r1battel.com/",
   "display": "standalone",
@@ -9,12 +9,12 @@
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "https://play-lh.googleusercontent.com/QiiJOtszeSb8M7ZcFjGAcVYaSD10C60oxXiHr0UAGUZ_H8qZP_L7Js91dOFAP7-koa4"
+      "type": "https://i.pinimg.com/736x/70/ff/bb/70ffbb7b286b99b060d83c045ffc4ac7.jpg"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
-      "type": "https://play-lh.googleusercontent.com/QiiJOtszeSb8M7ZcFjGAcVYaSD10C60oxXiHr0UAGUZ_H8qZP_L7Js91dOFAP7-koa4"
+      "type": "https://i.pinimg.com/736x/70/ff/bb/70ffbb7b286b99b060d83c045ffc4ac7.jpg"
     }
   ]
 }
