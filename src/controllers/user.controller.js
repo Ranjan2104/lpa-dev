@@ -19,8 +19,8 @@ exports.generateOTP = async (req, res) => {
   try {
     let userData = await User.findOne({ mobileNo });
 
-    let otp = Math.floor(100000 + Math.random() * 900000);
-    // let otp = 123456;
+    // let otp = Math.floor(100000 + Math.random() * 900000);
+    let otp = 123456;
     const expiresAt = dayjs().add(5, "minute");
     if (!userData) {
       userData = await User.create({ mobileNo });
@@ -48,14 +48,14 @@ exports.generateOTP = async (req, res) => {
       },
     };
 
-    axios
-      .post("https://www.fast2sms.com/dev/bulkV2", smsData, options)
-      .then((res) => {
-        // console.log(res);
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
+    // axios
+    //   .post("https://www.fast2sms.com/dev/bulkV2", smsData, options)
+    //   .then((res) => {
+    //     // console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err?.message);
+    //   });
 
     const user = await User.findOne({ mobileNo });
 
