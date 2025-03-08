@@ -22,7 +22,7 @@ exports.createTransaction = async (req, res) => {
 
     const payload = { userId: _id, amount, type, userDetails };
     const user = await User.findOne({ _id }, { balance: 1 });
-    if (Number(amount) < 95) {
+    if (Number(amount) < 50) {
       return errorHandler({
         res,
         statusCode: 400,
