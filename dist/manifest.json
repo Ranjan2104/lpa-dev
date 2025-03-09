@@ -1,5 +1,5 @@
 {
-  "name": "Ludo Game",
+  "name": "Ring Ludo",
   "short_name": "The Ultimate Ludo Battle Platform",
   "start_url": "https://r1battel.com/",
   "display": "standalone",
@@ -9,12 +9,12 @@
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "https://i.pinimg.com/736x/70/ff/bb/70ffbb7b286b99b060d83c045ffc4ac7.jpg"
+      "type": "/newLogo.jpeg"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
-      "type": "https://i.pinimg.com/736x/70/ff/bb/70ffbb7b286b99b060d83c045ffc4ac7.jpg"
+      "type": "/newLogo.jpeg"
     }
   ]
 }
