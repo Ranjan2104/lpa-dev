@@ -13,6 +13,7 @@ const {
   sendReferralNotification,
 } = require("../utils/notificationHelper");
 const { response } = require("express");
+const { UserDetails } = require("otpless-node-js-auth-sdk");
 //user generate otp
 exports.generateOTP = async (req, res) => {
   const { mobileNo } = req.body;
@@ -34,28 +35,40 @@ exports.generateOTP = async (req, res) => {
       });
     }
 
-    const smsData = {
-      route: "otp",
-      language: "english",
-      numbers: mobileNo,
-      variables_values: Number(otp),
-    };
+    const clientId = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
 
-    const options = {
-      headers: {
-        authorization: process.env.FAST2SMS_API_KEY,
-        "Content-Type": "application/json",
-      },
-    };
+    const url = "https://auth.otpless.app/auth/v1/initiate/otp";
+    console.log("mobileNo", mobileNo);
+    axios
+      .post(
+        url,
+        {
+          phoneNumber: `+91${mobileNo}`,
+          channels: ["SMS"],
+        },
+        {
+          headers: {
+            clientId: clientId,
+            clientSecret: clientSecret,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        // console.log("OTP Sent Successfully:", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error Response Data:", error.response.data);
+          console.error("Error Status:", error.response.status);
+          console.error("Error Headers:", error.response.headers);
+        } else {
+          console.error("Request Error:", error.message);
+        }
+      });
 
-    // axios
-    //   .post("https://www.fast2sms.com/dev/bulkV2", smsData, options)
-    //   .then((res) => {
-    //     // console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err?.message);
-    //   });
+    console.log("OTP Sent Successfully:", response.data);
 
     const user = await User.findOne({ mobileNo });
 
